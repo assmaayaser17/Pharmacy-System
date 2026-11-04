@@ -1,0 +1,374 @@
+@import "tailwindcss";
+@import "@fontsource-variable/readex-pro";
+
+/* ===== الهوية: نمط متاجر كبيرة — كحلي داكن + برتقالي + أصفر للأزرار + روابط فيروزي ===== */
+@theme {
+  --font-sans: "Readex Pro Variable", system-ui, "Segoe UI", Tahoma, sans-serif;
+  --font-display: "Readex Pro Variable", system-ui, sans-serif;
+
+  --color-ink: #131921;
+  --color-ink-2: #232f3e;
+  --color-text: #0f1111;
+  --color-leaf: #007185;
+  --color-leaf-dark: #005f6b;
+  --color-mint: #e3f2f4;
+  --color-mint-2: #f0f8f9;
+  --color-paper: #f7f7f7;
+  --color-ivory: #e3e6e6;
+  --color-line: #d5d9d9;
+  --color-muted: #565959;
+  --color-coral: #cc0c39;
+  --color-coral-soft: #fbe5ea;
+  --color-amber: #ffa41c;
+  --color-amber-soft: #fff4e0;
+
+  --color-gold: #ff9900;
+  --color-gold-light: #febd69;
+  --color-gold-dark: #c45500;
+  --color-yellow: #ffd814;
+  --color-yellow-dark: #f7ca00;
+
+  --color-violet: #007185;
+  --color-violet-soft: #e3f2f4;
+  --color-pink-soft: #fbe5ea;
+  --color-peach: #fff4e0;
+  --color-sun: #ff9900;
+  --color-sky: #e3f2f4;
+
+  --radius-pill: 999px;
+  --shadow-lift: 0 2px 5px rgb(15 17 17 / 0.15);
+}
+
+:root {
+  font-size: 17px;
+}
+:root[data-big="1"] {
+  font-size: 19.5px;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #fff;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.75;
+  /* مساحة لشريط التنقل السفلي على الجوال */
+  padding-bottom: 5.5rem;
+}
+@media (min-width: 1024px) {
+  body {
+    padding-bottom: 0;
+  }
+}
+
+h1,
+h2 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+h3 {
+  line-height: 1.4;
+  font-weight: 600;
+}
+::selection {
+  background: #febd69;
+  color: #0f1111;
+}
+
+a,
+button,
+input,
+select,
+textarea,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid #007185;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+@layer components {
+/* ===== أزرار كبيرة وواضحة (٤٨px كحد أدنى للمس) ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.55rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.25s, border-color 0.25s, color 0.25s, box-shadow 0.25s, transform 0.1s;
+  text-align: center;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--color-yellow);
+  border-color: #fcd200;
+  color: var(--color-text);
+  box-shadow: 0 2px 5px rgb(213 217 217 / 0.5);
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-yellow-dark);
+  border-color: #f2c200;
+}
+.btn-gold {
+  background: var(--color-amber);
+  border-color: #ff8f00;
+  color: var(--color-text);
+}
+.btn-gold:hover:not(:disabled) {
+  background: #fa8900;
+}
+.btn-ink {
+  background: var(--color-ink-2);
+  color: #fff;
+}
+.btn-ink:hover:not(:disabled) {
+  background: var(--color-ink);
+}
+.btn-ghost {
+  background: #fff;
+  color: var(--color-text);
+  border-color: var(--color-line);
+  box-shadow: 0 2px 5px rgb(213 217 217 / 0.5);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: #f7fafa;
+}
+.btn-outline {
+  background: var(--color-yellow);
+  color: var(--color-text);
+  border-color: #fcd200;
+}
+.btn-outline:hover:not(:disabled) {
+  background: var(--color-yellow-dark);
+}
+.btn-coral {
+  background: var(--color-coral);
+  color: #fff;
+}
+.btn-lg {
+  min-height: 3.5rem;
+  font-size: 1.1rem;
+  padding-inline: 1.8rem;
+}
+.btn-sm {
+  min-height: 2.5rem;
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* ===== حقول الإدخال ===== */
+.field {
+  width: 100%;
+  min-height: 3.1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 14px;
+  border: 1px solid #888c8c;
+  background: #fff;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field:focus {
+  outline: none;
+  border-color: #e77600;
+  box-shadow: 0 0 0 3px rgb(228 121 17 / 0.3);
+}
+.field::placeholder {
+  color: #9a937f;
+}
+.label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.hint {
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+.err {
+  color: var(--color-coral);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+/* ===== أدوات مساعدة (أسماؤها قديمة، شكلها الجديد بسيط) ===== */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-gold-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.gold-text {
+  color: inherit;
+}
+.lux-dark {
+  background: var(--color-ink-2);
+  color: #fff;
+}
+.lux-frame {
+  position: relative;
+}
+.gold-rule {
+  height: 1px;
+  background: var(--color-line);
+}
+.price {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  color: var(--color-text);
+}
+.link {
+  color: var(--color-leaf);
+}
+.link:hover {
+  color: #c7511f;
+  text-decoration: underline;
+}
+
+/* ===== الكبسولة: العنصر المميز للهوية ===== */
+.capsule {
+  border-radius: var(--radius-pill);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 2.6rem;
+  padding: 0.3rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-line);
+  background: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.chip:hover {
+  border-color: var(--color-muted);
+  background: var(--color-mint-2);
+}
+.chip[aria-current="true"] {
+  background: var(--color-mint);
+  color: var(--color-leaf-dark);
+  border-color: var(--color-leaf);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.05rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.scroll-x {
+  position: relative;
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding-block: 2px;
+}
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
+.scroll-x > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+.container-x {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (min-width: 768px) {
+  .container-x {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* حركة واحدة مقصودة: كبسولات الهيرو تطفو ببطء */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(calc(var(--r, 0deg) + 3deg));
+  }
+}
+.drift {
+  animation: drift 7s ease-in-out infinite;
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.sheet-in {
+  animation: sheet-in 0.22s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* أرقام الأسعار بعرض ثابت لسهولة المقارنة */
+.num {
+  font-variant-numeric: tabular-nums;
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+}
